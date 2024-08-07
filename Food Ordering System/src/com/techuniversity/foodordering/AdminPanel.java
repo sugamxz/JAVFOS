@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class AdminPanel extends JFrame {
     public AdminPanel() {
-        setTitle("Admin Panel");
+        setTitle("Admin Panel"); //ok
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
