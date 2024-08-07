@@ -1,1 +1,2 @@
-sugam@mail.com,1434,Administrator
+h,3,Administrator
+n,1,Vendor

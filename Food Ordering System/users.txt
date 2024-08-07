@@ -1,2 +1,0 @@
-nshapoudyl@gmail.com,123,Customer
-v,1,Vendor
