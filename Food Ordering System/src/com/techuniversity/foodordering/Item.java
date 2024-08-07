@@ -1,6 +1,8 @@
 package com.techuniversity.foodordering;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     private String name;
     private String description;
     private double price;
@@ -13,6 +15,7 @@ public class Item {
         this.imagePath = imagePath;
     }
 
+    // Getters and setters
     public String getName() {
         return name;
     }

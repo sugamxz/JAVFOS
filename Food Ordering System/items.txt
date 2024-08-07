@@ -1,4 +1,0 @@
-momobbb|good delicious|12.0|C:\Users\HP\Desktop\java\images\pizza.png
-pizza|spicy|124.0|C:\Users\HP\Desktop\java\images\pizza.png
-pasta|delicious sweet|1150.0|C:\Users\HP\Desktop\java\images\pasta.png
-momo|ds,ndsFzsf|120.0|C:\Users\HP\Desktop\java\images\momo.png
