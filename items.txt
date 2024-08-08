@@ -1,5 +1,3 @@
-Item:momo,fhcjjgh,460.0,C:\Users\HP\Pictures\Camera Roll\A7400910.jpg
-Item:nisha,123,1.0,null
-Item:hcgn,123,11.0,null
-Item:n,fzdb,12.0,null
-Item:chowmin,hello,100.0,C:\Users\HP\Pictures\Camera Roll\A7400984.jpg
+Item:momo,spicy,150.0,C:\Users\HP\Desktop\photos\photo.jpg
+Item:pizzza,vjgbk,200.0,C:\Users\HP\Desktop\photos\pizza.jpg
+Item:pasta,hello,222.0,C:\Users\HP\Desktop\photos\pasta.jpg

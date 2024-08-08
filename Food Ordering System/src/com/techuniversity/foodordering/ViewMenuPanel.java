@@ -67,9 +67,11 @@ public class ViewMenuPanel extends JPanel {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parts = line.split("\\|");
-                if (parts.length == 4) {
-                    menuItems.add(new MenuItem(parts[0], parts[1], parts[2], parts[3]));
+                if (line.startsWith("Item:")) {
+                    String[] parts = line.substring(5).split(",");
+                    if (parts.length == 4) {
+                        menuItems.add(new MenuItem(parts[0], parts[1], parts[2], parts[3]));
+                    }
                 }
             }
         } catch (IOException e) {
@@ -92,7 +94,7 @@ public class ViewMenuPanel extends JPanel {
         }
     }
 
-    class MenuItem {
+    static class MenuItem {
         private String name;
         private String description;
         private String price;
