@@ -24,7 +24,7 @@ public class VendorPanel extends JFrame {
             int confirm = JOptionPane.showConfirmDialog(null, "Are you sure you want to logout?", "Confirm Logout", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
                 // Redirect to login screen
-                dispose(); // Close the VendorPanel
+                dispose(); // Close the VendorPanel nisha
                 new LoginScreen().setVisible(true); // Open the LoginScreen
             }
         });
