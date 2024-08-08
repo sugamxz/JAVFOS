@@ -49,6 +49,14 @@ public class DeliveryRunnerPanel extends JFrame {
 
         add(tabbedPane);
         setVisible(true);
+<<<<<<< HEAD
+=======
+    }
+
+    public static void main(String[] args) {
+        // Ensure the GUI creation is done on the Event Dispatch Thread
+        SwingUtilities.invokeLater(() -> new DeliveryRunnerPanel());
+>>>>>>> ce9ba36b1daca9264c36be1d27626742cac3ba68
     }
 
     private void loadOrdersFromFile(String fileName) {

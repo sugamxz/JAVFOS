@@ -1,2 +1,8 @@
+<<<<<<< HEAD
+
+s,2,pokhara,1,Item:momo,2,350.00,Delivery
+n,1,p,1,Item:pizzza,2,450.00,Delivery
+=======
 aa,ss,sds,qw1235567,Item:momo,2,350.00
 66,pp,pp,;;l,Item:momo,2,350.00
+>>>>>>> ce9ba36b1daca9264c36be1d27626742cac3ba68

@@ -11,7 +11,6 @@ public class LoginScreen extends JFrame {
     private JPasswordField passwordField;
     private JComboBox<String> roleComboBox;
     private JButton loginButton;
-    private JButton registerButton;
 
     public LoginScreen() {
         setTitle("University Food Ordering System - Login");
@@ -20,18 +19,30 @@ public class LoginScreen extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(new Color(70, 130, 180));
+        // Title Panel with Gradient Background
+        JPanel titlePanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2d = (Graphics2D) g;
+                GradientPaint gradient = new GradientPaint(0, 0, new Color(70, 130, 180), 0, getHeight(), new Color(30, 60, 100));
+                g2d.setPaint(gradient);
+                g2d.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        titlePanel.setPreferredSize(new Dimension(getWidth(), 100));
         JLabel titleLabel = new JLabel("Welcome to University Food Ordering System");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setForeground(Color.WHITE);
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         titlePanel.add(titleLabel);
 
+        // Form Panel with Modern Layout
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new GridBagLayout());
-        formPanel.setBackground(new Color(245, 245, 245));
+        formPanel.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 10, 10, 10);
+        gbc.insets = new Insets(15, 15, 15, 15);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
@@ -42,6 +53,7 @@ public class LoginScreen extends JFrame {
 
         gbc.gridx = 1;
         emailField = new JTextField(20);
+        emailField.setFont(new Font("Arial", Font.PLAIN, 16));
         formPanel.add(emailField, gbc);
 
         gbc.gridx = 0;
@@ -52,6 +64,7 @@ public class LoginScreen extends JFrame {
 
         gbc.gridx = 1;
         passwordField = new JPasswordField(20);
+        passwordField.setFont(new Font("Arial", Font.PLAIN, 16));
         formPanel.add(passwordField, gbc);
 
         gbc.gridx = 0;
@@ -63,6 +76,7 @@ public class LoginScreen extends JFrame {
         gbc.gridx = 1;
         String[] roles = {"Vendor", "Customer", "Delivery Runner", "Administrator"};
         roleComboBox = new JComboBox<>(roles);
+        roleComboBox.setFont(new Font("Arial", Font.PLAIN, 16));
         formPanel.add(roleComboBox, gbc);
 
         gbc.gridx = 1;
@@ -72,15 +86,11 @@ public class LoginScreen extends JFrame {
         loginButton.setFont(new Font("Arial", Font.BOLD, 16));
         loginButton.setBackground(new Color(60, 179, 113));
         loginButton.setForeground(Color.WHITE);
+        loginButton.setPreferredSize(new Dimension(120, 40));
+        loginButton.setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
         formPanel.add(loginButton, gbc);
 
-        gbc.gridy = 4;
-        registerButton = new JButton("Register");
-        registerButton.setFont(new Font("Arial", Font.BOLD, 16));
-        registerButton.setBackground(new Color(255, 165, 0));
-        registerButton.setForeground(Color.WHITE);
-        formPanel.add(registerButton, gbc);
-
+        // Adding Components to JFrame
         add(titlePanel, BorderLayout.NORTH);
         add(formPanel, BorderLayout.CENTER);
 
@@ -93,15 +103,8 @@ public class LoginScreen extends JFrame {
                 if (validateLogin(email, new String(password), role)) {
                     openPanel(role);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Invalid credentials. Please register first.");
+                    JOptionPane.showMessageDialog(null, "Invalid credentials. Please try again.");
                 }
-            }
-        });
-
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new RegistrationScreen();
             }
         });
     }
@@ -111,10 +114,10 @@ public class LoginScreen extends JFrame {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] details = line.split(",");
-                if (details.length == 3) {
-                    String registeredEmail = details[0];
-                    String registeredPassword = details[1];
-                    String registeredRole = details[2];
+                if (details.length == 5) { // Adjusted to match user details format
+                    String registeredEmail = details[1];
+                    String registeredPassword = details[2];
+                    String registeredRole = details[0];
                     if (registeredEmail.equals(email) && registeredPassword.equals(password) && registeredRole.equals(role)) {
                         return true;
                     }
@@ -149,10 +152,6 @@ public class LoginScreen extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                new LoginScreen().setVisible(true);
-            }
-        });
+        SwingUtilities.invokeLater(() -> new LoginScreen().setVisible(true));
     }
 }
