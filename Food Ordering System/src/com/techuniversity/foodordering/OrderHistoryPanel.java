@@ -1,20 +1,26 @@
 package com.techuniversity.foodordering;
 
-import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import javax.swing.*;
 
 public class OrderHistoryPanel extends JPanel {
-    public OrderHistoryPanel() {
+    public OrderHistoryPanel(List<Order> orders) {
         setLayout(new BorderLayout());
 
-        // Placeholder for order history details
         JTextArea orderHistoryTextArea = new JTextArea();
         orderHistoryTextArea.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(orderHistoryTextArea);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Dummy data for order history
-        orderHistoryTextArea.setText("Order History:\n\nOrderID: 001\nCustomer: John Doe\nStatus: Delivered\nAmount: $25.00\n\n" +
-                "OrderID: 002\nCustomer: Jane Smith\nStatus: Cancelled\nAmount: $15.00\n");
+        // Display order history from the provided list
+        StringBuilder orderHistory = new StringBuilder("Order History:\n\n");
+        for (Order order : orders) {
+            orderHistory.append("OrderID: ").append(order.getOrderId()).append("\n")
+                    .append("Customer: ").append(order.getCustomer()).append("\n")
+                    .append("Date: ").append(order.getDate()).append("\n")
+                    .append("Status: ").append(order.getStatus()).append("\n\n");
+        }
+        orderHistoryTextArea.setText(orderHistory.toString());
     }
 }
