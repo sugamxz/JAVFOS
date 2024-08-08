@@ -37,7 +37,7 @@ public class ManageItemsPanel extends JPanel {
         gbc.gridx = 0;
         gbc.gridy = 0;
         formPanel.add(new JLabel("Name:"), gbc);
-        
+
         gbc.gridx = 1;
         nameField = new JTextField(20);
         formPanel.add(nameField, gbc);
@@ -112,12 +112,13 @@ public class ManageItemsPanel extends JPanel {
                 nameField.setText(selectedItem.getName());
                 descriptionField.setText(selectedItem.getDescription());
                 priceField.setText(String.valueOf(selectedItem.getPrice()));
+                imagePath = selectedItem.getImagePath();
                 try {
                     BufferedImage img = ImageIO.read(new File(selectedItem.getImagePath()));
                     ImageIcon imageIcon = new ImageIcon(img.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
                     imageLabel.setIcon(imageIcon);
                 } catch (IOException ioException) {
-                    // Handle exception if image cannot be read
+                    imageLabel.setIcon(null); // Clear the label if image cannot be loaded
                 }
             }
         });
@@ -178,7 +179,10 @@ public class ManageItemsPanel extends JPanel {
                     selectedItem.setName(name);
                     selectedItem.setDescription(description);
                     selectedItem.setPrice(price);
-                    selectedItem.setImagePath(imagePath);
+                    // Only update the image path if a new image is selected
+                    if (imagePath != null && !imagePath.equals(selectedItem.getImagePath())) {
+                        selectedItem.setImagePath(imagePath);
+                    }
                     updateTable();
                     FileUtil.saveItems(items);
                     clearFields();
@@ -231,3 +235,4 @@ public class ManageItemsPanel extends JPanel {
         table.clearSelection();
     }
 }
+
