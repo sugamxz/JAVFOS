@@ -1,3 +1,4 @@
 h,3,Administrator
 n,1,Vendor
 Customer,nisha,1,1,p
+Customer,n,2,2,p

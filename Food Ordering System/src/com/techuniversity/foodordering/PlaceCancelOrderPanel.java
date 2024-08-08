@@ -173,7 +173,7 @@ public class PlaceCancelOrderPanel extends JPanel {
             );
 
             if (response == JOptionPane.YES_OPTION) {
-                // Proceed with order details
+                // Collect delivery choice
                 String[] options = {"Dine-In", "Takeaway", "Delivery"};
                 String choice = (String) JOptionPane.showInputDialog(
                         PlaceCancelOrderPanel.this,
@@ -199,16 +199,17 @@ public class PlaceCancelOrderPanel extends JPanel {
                 String address = JOptionPane.showInputDialog("Enter your address:");
                 String phone = JOptionPane.showInputDialog("Enter your phone number:");
 
-                // Save order to file
+                // Save order to file including delivery option
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("orders.txt", true))) {
-                    writer.write(String.format("%s,%s,%s,%s,%s,%d,%.2f%n",
+                    writer.write(String.format("%s,%s,%s,%s,%s,%d,%.2f,%s%n",
                             name,
                             email,
                             address,
                             phone,
                             selectedItem,
                             quantity,
-                            totalPrice
+                            totalPrice,
+                            choice // Include delivery option in the order details
                     ));
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(PlaceCancelOrderPanel.this, "Error saving order.");
@@ -282,10 +283,11 @@ public class PlaceCancelOrderPanel extends JPanel {
         }
 
         if (!inputFile.delete()) {
-            throw new IOException("Could not delete the original file.");
+            throw new IOException("Could not delete original file.");
         }
+
         if (!tempFile.renameTo(inputFile)) {
-            throw new IOException("Could not rename the temporary file.");
+            throw new IOException("Could not rename temporary file.");
         }
     }
 }
